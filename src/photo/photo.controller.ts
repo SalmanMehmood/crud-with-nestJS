@@ -5,6 +5,7 @@ import {
   Post,
   Body,
   Delete,
+  Param,
   Query,
 } from '@nestjs/common';
 import { Photo } from 'src/models/photo.entity';
@@ -12,7 +13,7 @@ import { PhotoService } from './photo.service';
 
 @Controller('photo')
 export class PhotoController {
-  constructor(private readonly photoService: PhotoService) {}
+  constructor(private readonly photoService: PhotoService) { }
 
   @Get()
   findAll(): Promise<Photo[]> {
@@ -20,9 +21,8 @@ export class PhotoController {
   }
 
   @Get('/:id')
-  findById(@Request() req): Promise<any> {
-    let reqParams = req.params.id;
-    return this.photoService.findById(reqParams);
+  findById(@Param("id") id): Promise<any> {
+    return this.photoService.findById(id);
   }
 
   @Post()
@@ -30,8 +30,8 @@ export class PhotoController {
     return this.photoService.insertData(req);
   }
 
-  @Delete()
-  deletePhotoById(@Query() req): Promise<Number> {
-    return this.photoService.deletePhotoById(req);
+  @Delete("/:id")
+  deletePhotoById(@Param("id") id): Promise<Number> {
+    return this.photoService.deletePhotoById(id);
   }
 }
