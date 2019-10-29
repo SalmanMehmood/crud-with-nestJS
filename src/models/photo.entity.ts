@@ -1,19 +1,19 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity()
+@Entity('photo')
 export class Photo {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @Column({ name: 'Name' })
+  @Column({ name: 'aame' })
   name: string;
 
-  @Column({ name: 'Description' })
+  @Column({ name: 'aescription' })
   description: string;
 
-  @Column({ name: 'View' })
+  @Column({ name: 'view' })
   view: number;
 
-  @Column({ name: 'Published' })
+  @Column({ name: 'published' })
   isPublished: boolean;
 }
